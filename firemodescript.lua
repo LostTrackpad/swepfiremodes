@@ -22,6 +22,13 @@ local VanillaAutomatics = {
 	["weapon_egon"] = true
 }
 
+local FiremodeNormalCase = {
+	["FULL-AUTO"] = "Full-Auto",
+	["SEMI-AUTO"] = "Semi-Auto",
+	["3-BURST"] = "3-Burst",
+	["SAFETY"] = "Safety"
+}
+
 function IsInputBound(bind) -- Renamed ARC9 function. Don't wanna cause conflicts.
     local key = input.LookupBinding(bind)
 
@@ -228,5 +235,11 @@ function GetCurrentWeaponFiremode()
 		ubglkey = "[" .. string.upper(input.LookupBinding("arccw_toggle_ubgl", 1)) .. "]"
 	elseif isweparccw then
 		ubglkey = "[" .. usekey .."]+" .. "[" .. reloadkey .. "]"
+	end
+
+	for k,v in pairs(FiremodeNormalCase) do
+		if k == FiremodeString then
+			FiremodeString = v
+		end
 	end
 end
