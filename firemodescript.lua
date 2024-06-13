@@ -1,4 +1,4 @@
-local Weapon = LocalPlayer():GetActiveWeapon()
+local Weapon = nil
 
 local MWBaseFiremodes = {
     ["AUTOMATIC"] = "Full-Auto",
@@ -98,13 +98,14 @@ function GetA9FiremodeName()
 	return FiremodeText
 end
 
-function GetCurrentWeaponFiremode()
+function GetCurrentFiremode()
 	Weapon = LocalPlayer():GetActiveWeapon()
 
 	if !IsValid(Weapon) then return end
 
 	local ismgbase = false
 	local isarc9 = Weapon.ARC9
+	if isarc9 then print("fuck!") end
 	local inarc9cust = isarc9 and Weapon:GetCustomize()
 	local isweparccw = Weapon.ArcCW
 	local istfabase = Weapon.IsTFAWeapon
